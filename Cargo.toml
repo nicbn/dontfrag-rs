@@ -1,6 +1,6 @@
 [package]
 name = "dontfrag"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 
 description = "Library for setting Don't Fragment option (DF) on UDP sockets"
@@ -23,3 +23,4 @@ windows-sys = { version = "0.52.0", features = ["Win32_Networking_WinSock"] }
 
 [package.metadata.docs.rs]
 all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

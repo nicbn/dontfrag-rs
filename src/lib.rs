@@ -16,7 +16,7 @@
 //! * `tokio`: Adds support for `tokio::net::UdpSocket`.
 
 #![deny(unsafe_op_in_unsafe_fn)]
-#![cfg_attr(doc, feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 use std::{io, net::UdpSocket};
 use sys_common::AsRawSocket;
@@ -102,7 +102,7 @@ impl UdpSocketExt for UdpSocket {
 #[cfg(feature = "tokio")]
 impl private::Sealed for tokio::net::UdpSocket {}
 #[cfg(feature = "tokio")]
-#[doc(cfg(feature = "tokio"))]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio")))]
 impl UdpSocketExt for tokio::net::UdpSocket {
     #[inline(always)]
     fn dontfrag_v4(&self) -> io::Result<bool> {
