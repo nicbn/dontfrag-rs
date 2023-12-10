@@ -1,0 +1,17 @@
+[package]
+name = "dontfrag"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+cfg-if = "1.0.0"
+tokio = { version = "1.35.0", optional = true, features = ["net"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2.150"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.52.0", features = ["Win32_Networking_WinSock"] }
+
+[package.metadata.docs.rs]
+all-features = true
