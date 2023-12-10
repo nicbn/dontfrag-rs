@@ -2,6 +2,8 @@
 name = "dontfrag"
 version = "1.0.0"
 edition = "2021"
+authors = ["N. Nattis <contact@nicbn.com>"]
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 cfg-if = "1.0.0"
