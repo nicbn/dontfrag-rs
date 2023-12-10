@@ -1,5 +1,8 @@
 # dontfrag-rs
 
+[![Crate](https://shields.io/crates/v/dontfrag?style=for-the-badge)](https://crates.io/crates/dontfrag/)
+[![Documentation](https://img.shields.io/docsrs/dontfrag?style=for-the-badge)](https://docs.rs/dontfrag/latest/dontfrag/)
+
 Rust library for setting Don't Fragment option (DF) on UDP sockets.
 
 ## Platform support
