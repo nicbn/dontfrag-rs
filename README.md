@@ -11,6 +11,9 @@ Rust library for setting Don't Fragment option (DF) on UDP sockets.
 * Linux-like: Linux, L4RE, Android, Emscripten
 * Windows
 
+On NetBSD, OpenBSD and DragonFly, IPv4 getters/setters return
+`io::ErrorKind::Unsupported`; IPv6 uses `IPV6_DONTFRAG`.
+
 PRs for additional platforms are welcome!
 
 ## Optional features
