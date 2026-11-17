@@ -12,7 +12,7 @@
 //! ```
 //!
 //! ## Optional features
-//! 
+//!
 //! * `tokio`: Adds support for `tokio::net::UdpSocket`.
 
 #![deny(unsafe_op_in_unsafe_fn)]
@@ -52,8 +52,9 @@ pub trait UdpSocketExt: private::Sealed {
     ///
     /// # Platform-specific behavior
     ///
-    /// On BSD-like systems (including Darwin), this sets the `IP_DONTFRAG`
-    /// option.
+    /// On FreeBSD and Darwin, this sets the `IP_DONTFRAG` option.
+    /// NetBSD, OpenBSD and DragonFly return [`io::ErrorKind::Unsupported`]
+    /// from both IPv4 accessors because this option is unavailable.
     ///
     /// On Linux-like systems, this sets the `IP_MTU_DISCOVER` option to
     /// either `IP_PMTUDISC_DONT` or `IP_PMTUDISC_DO`.
@@ -129,6 +130,7 @@ impl UdpSocketExt for tokio::net::UdpSocket {
 mod test {
     use super::*;
 
+    #[cfg(not(any(target_os = "netbsd", target_os = "openbsd", target_os = "dragonfly")))]
     #[test]
     fn retain_dontfrag_v4() {
         let socket = UdpSocket::bind("127.0.0.1:0").unwrap();
@@ -136,6 +138,22 @@ mod test {
         assert!(socket.dontfrag_v4().unwrap());
         socket.set_dontfrag_v4(false).unwrap();
         assert!(!socket.dontfrag_v4().unwrap());
+    }
+
+    #[cfg(any(target_os = "netbsd", target_os = "openbsd", target_os = "dragonfly"))]
+    #[test]
+    fn unsupported_dontfrag_v4() {
+        let socket = UdpSocket::bind("127.0.0.1:0").unwrap();
+        assert_eq!(
+            socket.dontfrag_v4().unwrap_err().kind(),
+            io::ErrorKind::Unsupported
+        );
+        for enabled in [false, true] {
+            assert_eq!(
+                socket.set_dontfrag_v4(enabled).unwrap_err().kind(),
+                io::ErrorKind::Unsupported
+            );
+        }
     }
 
     #[test]
