@@ -20,6 +20,11 @@ PRs for additional platforms are welcome!
 
 * `tokio`: Adds support for `tokio::net::UdpSocket`.
 
+## Minimum Supported Rust Version
+
+Currently the Minimum Supported Rust Version (MSRV) is 1.66.1. This version may
+be increased in the future with a minor release bump.
+
 ## License
 
 Licensed under either of
