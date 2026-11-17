@@ -5,6 +5,7 @@
 //! Example usage:
 //!
 //! ```no_run
+//! use std::net::UdpSocket;
 //! use dontfrag::UdpSocketExt;
 //!
 //! let socket = UdpSocket::bind("127.0.0.1:3400").unwrap();
