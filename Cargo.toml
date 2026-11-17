@@ -1,12 +1,12 @@
 [package]
 name = "dontfrag"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
+rust-version = "1.66.1"
 
 description = "Library for setting Don't Fragment option (DF) on UDP sockets"
 authors = ["N. Nattis <contact@nicbn.com>"]
 license = "MIT OR Apache-2.0"
-homepage = "https://github.com/nicbn/dontfrag-rs"
 repository = "https://github.com/nicbn/dontfrag-rs"
 keywords = ["api", "udp"]
 categories = ["api-bindings", "network-programming", "os"]
